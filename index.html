@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fisash Games</title>
+		<script>
+			var texts = {
+				"save" : "Ты пытался сохранить сайт, возможно чтобы взломать)))) Плиз, не сохраняй)",
+				"console" : "Не надо открывать консоль)",
+				"nojs" : "Сайту для работы нужен JavaScript. Включи его в настройках браузера"
+			}
+			
+			function Start(){
+				document.getElementById("text").innerHTML = texts[get_query().warn];
+				if(document.getElementById("text").innerHTML == "undefined"){
+					document.getElementById("text").innerHTML = "Хм, такой ошибки нет. Если дело не в тебе, то Димон надурил"
+				}
+			}
+			
+			function get_query(){
+				var url = location.href;
+				var qs = url.substring(url.indexOf('?') + 1).split('&');
+				for(var i = 0, result = {}; i < qs.length; i++){
+					qs[i] = qs[i].split('=');
+					result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+				}
+				return result;
+			}
+		</script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+				position: relative
+			}
+		</style>
+	</head>
+	<body onload="Start()" style="overflow: hidden">
+		<div style="width: 100vw; height: 100vh; background: linear-gradient(to bottom right, #333333, #555555); overflow: hidden" align="center">
+			<h1 id="text" style="top: 45vh; font-size: 5vh; color: white; word-wrap: break-word"></h1>
+		</div>
+	</body>
+</html>
